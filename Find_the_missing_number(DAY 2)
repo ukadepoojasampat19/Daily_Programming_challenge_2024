@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int  MissingNumber(int n, vector<int>& arr)
+{
+    //sum of n natural numbers
+    int total_sum = (n * (n+1))/2;
+
+    //finding current sum
+    int curr_sum=0;
+    for(auto& n: arr)
+    {
+        curr_sum += n;
+    }
+
+    return total_sum - curr_sum;
+}
