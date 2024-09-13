@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+vector<int> leader_array(vector<int>& arr)
+{
+     vector<int> result;
+
+    int n = arr.size();
+    //store right most element from array
+    int leader_max = arr[n-1];
+    result.push_back(leader_max);
+    for(int i=n-2;i>=0;i--)
+    {
+        if(arr[i] >= leader_max)
+        {
+            leader_max = arr[i];
+            result.push_back(arr[i]);
+        }
+    }    
+    reverse(result.begin(), result.end());
+    return result;
+
+}
