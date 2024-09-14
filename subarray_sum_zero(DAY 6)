@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//prefix sum with hashing
+
+vector<pair<int,int>> subarray_sum_zero(vector<int>& nums)
+{
+    unordered_map<int, vector<int>> prefix_sum;
+    vector<pair<int,int>> result;
+    int sum=0;
+
+    prefix_sum[0].push_back(-1);
+    for(int i=0;i<nums.size();i++)
+    {
+        sum += nums[i];
+
+        //check whether it is present or not
+        if(prefix_sum.find(sum) != prefix_sum.end())
+        {
+            for(auto& n : prefix_sum[sum])
+            {
+                 result.push_back({n +1, i});
+            }
+        }
+        prefix_sum[sum].push_back(i);
+    }
+    return result;
+}
