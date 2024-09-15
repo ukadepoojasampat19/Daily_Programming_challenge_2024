@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int trap(vector<int>& height) {
+    int n = height.size();
+    
+    // If there are less than 3 bars, no water can be trapped
+    if (n < 3) return 0;
+    
+    int left = 0, right = n - 1; // Initialize two pointers
+    int left_max = height[left], right_max = height[right]; // Track maximum heights on both sides
+    int trapped_water = 0;
+    
+    while (left < right) {
+        if (height[left] < height[right]) {
+            if (height[left] >= left_max) {
+                left_max = height[left]; // Update left_max if current bar is higher
+            } else {
+                trapped_water += left_max - height[left]; // Water trapped depends on left_max
+            }
+            left++; // Move the left pointer to the right
+        } else {
+            if (height[right] >= right_max) {
+                right_max = height[right]; // Update right_max if current bar is higher
+            } else {
+                trapped_water += right_max - height[right]; // Water trapped depends on right_max
+            }
+            right--; // Move the right pointer to the left
+        }
+    }
+    
+    return trapped_water;
+}
