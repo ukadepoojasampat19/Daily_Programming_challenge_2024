@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+string longestCommanPrefix(vector<string>& str)
+{
+     if(str.empty()) return " ";
+
+     string result="";
+
+      for(int i=0;i<str[0].size();i++)
+      {
+            char currChar = str[0][i];
+
+            for(int j=1;j<str.size();j++)
+            {
+                  if(str[j][i] != currChar)
+                  {
+                            return result;
+                  }
+            }
+            result += currChar;
+      }
+
+    return result;
+}
