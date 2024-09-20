@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isValid(string s) {
+    // Stack to hold opening brackets
+    stack<char> st;
+    
+    // Mapping of closing to opening brackets
+    unordered_map<char, char> bracketMap = {
+        {')', '('},
+        {'}', '{'},
+        {']', '['}
+    };
+    
+    // Iterate through the string
+    for (char c : s) {
+        // If the character is a closing bracket
+        if (bracketMap.find(c) != bracketMap.end()) {
+            // If the stack is empty or the top of the stack doesn't match the corresponding opening bracket
+            if (st.empty() || st.top() != bracketMap[c]) {
+                return false;
+            }
+            // Pop the opening bracket from the stack
+            st.pop();
+        }
+        // If it's an opening bracket, push it onto the stack
+        else {
+            st.push(c);
+        }
+    }
+    
+    // If the stack is empty, all brackets are matched; otherwise, they are not
+    return st.empty();
+}
