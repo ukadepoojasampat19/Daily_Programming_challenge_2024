@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+// Function to calculate GCD using the Euclidean algorithm
+long long gcd(long long a, long long b) {
+    while (b != 0) {
+        long long temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Function to calculate LCM using the relation between GCD and LCM
+long long lcm(long long n, long long m) {
+    return (n / gcd(n, m)) * m; // To prevent overflow, divide first
+}
+
+int main() {
+    long long n, m;
+    cin >> n >> m;
+
+    // Output the LCM of the two numbers
+    cout << lcm(n, m) << endl;
+
+    return 0;
+}
