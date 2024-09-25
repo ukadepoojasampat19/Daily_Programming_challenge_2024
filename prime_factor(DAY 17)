@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+vector<int> primeFactorization(int N) {
+    vector<int> factors;
+    
+    // Check for the number of 2's that divide N
+    while (N % 2 == 0) {
+        factors.push_back(2);
+        N /= 2;
+    }
+    
+    // Check for odd factors from 3 to sqrt(N)
+    for (int i = 3; i <= sqrt(N); i += 2) {
+        while (N % i == 0) {
+            factors.push_back(i);
+            N /= i;
+        }
+    }
+    
+    // This condition is to check if N is a prime number greater than 2
+    if (N > 2) {
+        factors.push_back(N);
+    }
+    
+    return factors;
+}
